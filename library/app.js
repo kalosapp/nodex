@@ -7,12 +7,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+var config = require('./config.js');
+var mongoose = require('mongoose');
 
 var app = express();
 
 //Set up mongoose connection
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://127.0.0.1/local_library';
+var mongoDB = config.dbUrl
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
